@@ -24,14 +24,7 @@ jobs:
           context: .
           file: .github/docker/Dockerfile.ci
           platforms: linux/amd64
-          load: true
-          tags: cgp-ci:local
-
-      - name: Extract archive
-        run: |
-          id=$(docker create cgp-ci:local)
-          docker cp $id:/out ./out
-          docker rm $id
+          outputs: type=local,dest=./out
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
