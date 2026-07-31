@@ -2,6 +2,6 @@
 FROM golang:1.26-alpine
 
 RUN apk add --no-cache git make && \
-    go install github.com/CognitiveOS-Project/cpm/cmd/cpm@latest
+    go install github.com/CognitiveOS-Project/cpm/cmd/cpm@v1.0.9-alpha
 
 WORKDIR /workspace

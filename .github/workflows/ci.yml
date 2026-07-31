@@ -16,7 +16,7 @@ jobs:
           go-version: "1.26"
 
       - name: Install cpm
-        run: go install github.com/CognitiveOS-Project/cpm/cmd/cpm@latest
+        run: go install github.com/CognitiveOS-Project/cpm/cmd/cpm@v1.0.9-alpha
 
       - name: Lint
         run: make lint

@@ -24,6 +24,15 @@ lint: vet fmt
 
 pack: build
 	cpm pack
+	@echo "==> ensuring tools/ binaries are executable in archive"
+	@for f in *.cgp; do \
+		rm -rf .pack-tmp && mkdir .pack-tmp \
+		&& tar -xzf "$$f" -C .pack-tmp \
+		&& chmod +x .pack-tmp/tools/* \
+		&& rm -f "$$f" \
+		&& tar -czf "$$f" -C .pack-tmp cognitive.json prompts tools \
+		&& rm -rf .pack-tmp; \
+	done
 
 verify: pack
 	cpm verify $(CGP)
