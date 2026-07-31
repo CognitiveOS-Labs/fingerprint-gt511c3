@@ -1,4 +1,4 @@
-VERSION ?= 0.1.0
+VERSION ?= 0.1.1
 NAME := com.cognitiveos.labs.fingerprint-gt511c3
 BIN := tools/gt511c3-mcp
 CGP := $(NAME)-$(VERSION)-linux-amd64.cgp

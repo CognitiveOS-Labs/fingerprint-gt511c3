@@ -32,3 +32,38 @@ jobs:
         with:
           name: cgp-archive
           path: "*.cgp"
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and pack in CI image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: .github/docker/Dockerfile.ci
+          platforms: linux/amd64
+          load: true
+          tags: cgp-ci:local
+
+      - name: Extract archive
+        run: |
+          id=$(docker create cgp-ci:local)
+          docker cp $id:/out ./out
+          docker rm $id
+
+      - name: Show package info
+        run: cat out/pkg.json
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: cgp-archive-docker
+          path: "out/*"

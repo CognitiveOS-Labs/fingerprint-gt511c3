@@ -1,7 +1,19 @@
-# CI-only image for building and verifying the fingerprint-gt511c3 package.
-FROM golang:1.26-alpine
+# CI image: builds the MCP tool, packs the .cgp archive, and exports it.
+# Used by the Publish workflow to attach the archive to a GitHub Release.
+ARG GO_VERSION=1.26
+FROM golang:${GO_VERSION}-alpine
 
-RUN apk add --no-cache git make && \
-    go install github.com/CognitiveOS-Project/cpm/cmd/cpm@v1.0.9-alpha
+ENV PATH="/root/go/bin:${PATH}"
 
-WORKDIR /workspace
+WORKDIR /src
+COPY . .
+
+RUN apk add --no-cache jq make \
+    && go install github.com/CognitiveOS-Project/cpm/cmd/cpm@v1.0.9-alpha \
+    && make pack \
+    && mkdir -p /out \
+    && cp *.cgp /out/ \
+    && cpm info --json > /out/pkg.json
+
+FROM scratch
+COPY --from=0 /out /out
