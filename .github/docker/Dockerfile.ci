@@ -1,0 +1,7 @@
+# CI-only image for building and verifying the fingerprint-gt511c3 package.
+FROM golang:1.26-alpine
+
+RUN apk add --no-cache git make && \
+    go install github.com/CognitiveOS-Project/cpm/cmd/cpm@latest
+
+WORKDIR /workspace
