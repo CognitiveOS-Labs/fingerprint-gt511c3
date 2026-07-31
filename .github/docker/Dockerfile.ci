@@ -13,7 +13,7 @@ RUN apk add --no-cache jq make \
     && make pack \
     && mkdir -p /out \
     && cp *.cgp /out/ \
-    && cpm info --json > /out/pkg.json
+    && cpm info --json *.cgp > /out/pkg.json
 
 FROM scratch
 COPY --from=0 /out /out
