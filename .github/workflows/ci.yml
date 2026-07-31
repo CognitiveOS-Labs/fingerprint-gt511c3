@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: [development]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+
+      - name: Install cpm
+        run: go install github.com/CognitiveOS-Project/cpm/cmd/cpm@v1.0.9-alpha
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+      - name: Pack and verify
+        run: make verify
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: cgp-archive
+          path: "*.cgp"

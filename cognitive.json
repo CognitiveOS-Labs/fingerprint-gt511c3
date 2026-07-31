@@ -1,0 +1,40 @@
+{
+  "name": "com.cognitiveos.labs.fingerprint-gt511c3",
+  "version": "0.1.0",
+  "description": "Driver and MCP bridge for the ADH Tech GT-511C3 fingerprint scanner over UART",
+  "author": "CognitiveOS Labs",
+  "license": "MIT",
+  "source": {
+    "repository": "https://github.com/CognitiveOS-Labs/fingerprint-gt511c3",
+    "issues": "https://github.com/CognitiveOS-Labs/fingerprint-gt511c3/issues"
+  },
+  "hardware_requirements": {
+    "os": [
+      "linux"
+    ],
+    "arch": [
+      "amd64",
+      "arm64",
+      "riscv64"
+    ],
+    "min_ram_mb": 16,
+    "min_storage_mb": 8
+  },
+  "runtime": {
+    "system_prompt": "prompts/system.md",
+    "tools_root": "./tools",
+    "mcp_servers": [
+      {
+        "name": "fingerprint-gt511c3-mcp",
+        "command": "gt511c3-mcp",
+        "transport": "stdio"
+      }
+    ],
+    "capabilities": [
+      "com.cognitiveos.labs.fingerprint-gt511c3.enroll",
+      "com.cognitiveos.labs.fingerprint-gt511c3.identify",
+      "com.cognitiveos.labs.fingerprint-gt511c3.verify",
+      "com.cognitiveos.labs.fingerprint-gt511c3.manage"
+    ]
+  }
+}
