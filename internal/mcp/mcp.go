@@ -17,7 +17,7 @@ import (
 )
 
 // Version of the MCP server, matched with the package manifest.
-var Version = "0.1.0"
+var Version = "0.1.1"
 
 // ToolPrefix is the reverse-domain tool prefix for this custom patch:
 // <publisher>.<patch-name>.<action> (mcp-conventions.md rule 4).
