@@ -1,9 +1,13 @@
 # fingerprint-gt511c3
 
-A `.cgp` package for CognitiveOS providing a driver and MCP bridge for the
-ADH Tech **GT-511C3** fingerprint scanner. The driver is implemented from the
+A **Cognitive Patch** (`.cgp`) for **CognitiveOS** — an independent operating
+system where the AI is the OS — providing a driver and MCP bridge for the ADH
+Tech **GT-511C3** fingerprint scanner. The driver is implemented from the
 datasheet in pure Go (no cgo) and speaks the GT-511C3 TTL UART protocol
 (9600 baud default).
+
+See [cognitive-os.org](https://cognitive-os.org) to learn more about
+CognitiveOS.
 
 ## Hardware
 
@@ -80,3 +84,9 @@ make verify         # cpm verify on the archive
 ## License
 
 MIT
+
+## Author
+
+Built and maintained by [jeanmachuca](https://github.com/jeanmachuca).
+
+Support the author: <https://github.com/sponsors/jeanmachuca>
