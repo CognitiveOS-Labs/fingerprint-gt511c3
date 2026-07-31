@@ -16,4 +16,4 @@ RUN apk add --no-cache jq make \
     && cpm info --json *.cgp > /out/pkg.json
 
 FROM scratch
-COPY --from=0 /out /out
+COPY --from=0 /out /
