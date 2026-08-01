@@ -72,6 +72,24 @@ stdio:
 - `get_enroll_count`, `check_enrolled`, `list_ids`, `delete_id`,
   `delete_all`, `change_baudrate`
 
+## Install
+
+The published release can be installed directly from GitHub with the `cpm`
+package manager:
+
+```bash
+cpm install ghr:CognitiveOS-Labs/fingerprint-gt511c3@v0.1.1
+```
+
+Patches are installed under `/cognitiveos/patches` by default. If that path is
+not writable (e.g. installing into a custom patch directory), point
+`CPM_PATCHES_DIR` at the target directory first:
+
+```bash
+export CPM_PATCHES_DIR=/path/to/patches
+cpm install ghr:CognitiveOS-Labs/fingerprint-gt511c3@v0.1.1
+```
+
 ## Build
 
 ```bash
